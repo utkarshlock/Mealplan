@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>30-Day Indian Meal Plan</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 20px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      background-color: #f7f7f7;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ab2323;
+      text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      color: #333;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+      background-color: #fff;
+    }
+
+    th {
+      background-color: #4caf50;
+      color: #fff;
+    }
+
+    /* Dark mode styles */
+    body.dark-mode {
+      background-color: #333;
+      color: #fff;
+    }
+
+    body.dark-mode td, body.dark-mode th {
+      background-color: #333;
+      color: #fff;
+    }
+
+    label {
+      margin-right: 10px;
+      font-weight: bold;
+      color: #b62929;
+    }
+
+    input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      width: 20px;
+      height: 20px;
+      background-color: #ddd;
+      border-radius: 5px;
+      cursor: pointer;
+      outline: none;
+    }
+
+    input[type="checkbox"]:checked {
+      background-color: #4caf50;
+    }
+
+    input[type="checkbox"]::before {
+      content: "🌙";
+      display: block;
+      text-align: center;
+      line-height: 20px;
+      color: #333;
+    }
+
+    input[type="checkbox"]:checked::before {
+      content: "☀️";
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <h1>30-Day Indian Meal Plan</h1>
+  <label for="darkModeToggle">Dark Mode:</label>
+  <input type="checkbox" id="darkModeToggle" onclick="toggleDarkMode()">
+  <table id="meal-plan-table">
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th>Breakfast</th>
+        <th>Lunch</th>
+        <th>Dinner</th>
+      </tr>
+    </thead>
+    <tbody id="meal-table-body"></tbody>
+  </table>
+  <script defer>
+    const breakfastOptions = [
+      "Vegetable Poha",
+      "Moong Dal Chilla",
+      "Oats Upma",
+      // ... other breakfast options
+    ];
+
+    const lunchOptions = [
+      "Chickpea Curry",
+      "Mixed Vegetable Biryani",
+      "Spinach & Paneer Curry",
+      // ... other lunch options
+    ];
+
+    const dinnerOptions = [
+      "Egg Curry",
+      "Palak & Mushroom Curry",
+      "Veggie Stir-fry",
+      // ... other dinner options
+    ];
+
+    function generateMealPlans(numDays) {
+      const mealTable = document.getElementById("meal-table-body");
+      for (let day = 1; day <= numDays; day++) {
+        const row = document.createElement("tr");
+        const dayCell = document.createElement("td");
+        dayCell.textContent = day;
+        row.appendChild(dayCell);
+
+        const breakfastCell = document.createElement("td");
+        breakfastCell.textContent = getRandomMeal(breakfastOptions);
+        row.appendChild(breakfastCell);
+
+        const lunchCell = document.createElement("td");
+        lunchCell.textContent = getRandomMeal(lunchOptions);
+        row.appendChild(lunchCell);
+
+        const dinnerCell = document.createElement("td");
+        dinnerCell.textContent = getRandomMeal(dinnerOptions);
+        row.appendChild(dinnerCell);
+
+        mealTable.appendChild(row);
+      }
+    }
+
+    function getRandomMeal(options) {
+      const randomIndex = Math.floor(Math.random() * options.length);
+      return options[randomIndex];
+    }
+
+    function toggleDarkMode() {
+      const body = document.body;
+      body.classList.toggle("dark-mode");
+    }
+
+    generateMealPlans(30); // Replace with the desired number of days
+  </script>
+</body>
+</html>
